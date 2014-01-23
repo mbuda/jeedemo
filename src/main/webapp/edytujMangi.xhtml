@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+
+		<h:form id="mangaForm">
+		<p:panel id="panel" header="Edytuj Mangę" style="margin-bottom:5px;">
+			<h:panelGrid columns="2" id="manga">
+
+				<h:outputText value="Tytul" />
+				<h:inputText id="tytul" value="#{mangaBean.manga.tytul}"
+					required="#{true}" />
+					
+				<h:outputText value="Liczba tomów" />
+				<h:inputText id="tomy" value="#{mangaBean.manga.tomy}" />
+
+				<h:outputText value="Autor"  />
+				<h:selectOneMenu value="#{mangaBean.autorId}" required="true" requiredMessage="Manga musi posiadac autora"> 
+					<f:selectItem itemLabel="Wybierz autora"/>
+					<f:selectItems value="#{mangaBean.allAutorzy}" var="c" itemValue="#{c.id}" itemLabel="#{c.nazwisko}"/>
+				</h:selectOneMenu> 
+
+				 
+				<h:outputText value = "Gatunek"  />				
+				<h:selectManyListbox value="#{mangaBean.gatunkiTemp}" converter="listaConverter">
+					<f:selectItems  value="#{mangaBean.allGatunki}" var="c" itemValue="#{c}" itemLabel="#{c.nazwa}"/>
+				</h:selectManyListbox>
+				
+				<!-- 
+				<p:pickList value="#{mangaBean.tempList}" var="entity" itemValue="#{entity}" itemLabel="#{entity.nazwa}">
+            		<o:converter converterId="omnifaces.ListConverter" list="#{mangaBean.allGatunki}" />
+        		</p:pickList>
+				-->
+			</p:panel>
+			</h:panelGrid>
+			<h:commandButton value="OK" action="#{mangaBean.edytujManga()}"/>
+
+			<h:panelGrid>
+				<h:messages for="" />
+				<h:messages id="messages" showDetail="#{true}"
+					showSummary="#{false}" />
+			</h:panelGrid>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

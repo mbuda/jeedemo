@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+
+<h:form>
+    <p:growl id="growl" showDetail="true" />
+
+    <p:graphicImage id="manga" name="images/manga.png" />
+
+    <p:resizable for="manga" animate="true" ghost="true">
+        <p:ajax listener="#{resizeBean.onResize()}"  execute="@this" update="growl" />
+    </p:resizable>
+</h:form>
+
+		<h:form id="mangaForm">
+			<p:panel id="panel" header="Nowa Manga" style="margin-bottom:5px;">
+			<h:panelGrid columns="2" id="manga">
+
+				<h:outputText value="Tytul" />
+				<p:tooltip for="tytul" value="Tu wpisz tytul mangi" showEffect="slide" hideEffect="slide" />  
+				<h:inputText id="tytul" value="#{mangaBean.manga.tytul}"
+					required="#{true}" />
+				<br />
+					
+				<h:outputLabel for="tomy" value="Liczba tomów" />
+				<p:tooltip for="tomy" value="Tu wybierz ile ma tomow" showEffect="slide" hideEffect="slide" />  
+				<p:spinner id="tomy" value="#{mangaBean.manga.tomy}" stepFactor="1" min="0" />
+
+				<br />
+				<h:outputText value="Autor"  />
+				
+				<br />
+				<h:selectOneMenu value="#{mangaBean.autorId}" required="true" requiredMessage="Manga musi posiadac autora"> 
+					<f:selectItem itemLabel="Wybierz autora"/>
+					<f:selectItems value="#{mangaBean.allAutorzy}" var="c" itemValue="#{c.id}" itemLabel="#{c.nazwisko}"/>
+				</h:selectOneMenu> 
+
+				 
+				<br />
+				<h:outputText value = "Gatunek"  />	
+				
+				<br />
+				<h:selectManyListbox value="#{mangaBean.gatunkiTemp}" converter="listaConverter">
+					<f:selectItems  value="#{mangaBean.allGatunki}" var="c" itemValue="#{c}" itemLabel="#{c.nazwa}"/>
+				</h:selectManyListbox>
+			
+			</h:panelGrid>	
+		</p:panel>
+			<h:commandButton value="OK" action="#{mangaBean.addManga()}"/>
+
+			<h:panelGrid>
+				<h:messages for="" />
+				<h:messages id="messages" showDetail="#{true}"
+					showSummary="#{false}" />
+			</h:panelGrid>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

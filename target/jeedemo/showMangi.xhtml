@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+		<h:form>
+			<h:dataTable value="#{mangaBean.allMangi}" var="item">
+				<f:facet name="header">#{msg.mangaList}</f:facet>
+				<h:column>
+					<f:facet name="header">#{msg.title}</f:facet>
+					<h:outputText value="#{item.tytul}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">#{msg.tom}</f:facet>
+					<h:outputText value="#{item.tomy}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Autor</f:facet>
+					<h:outputText value="#{item.autor.nazwisko}"/>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Gatunki</f:facet>
+					<h:dataTable value="#{item.gatunki}" var="w">
+						<h:column>
+							<h:outputText value="#{w.nazwa} " />
+						</h:column>
+					</h:dataTable>
+				</h:column>
+				
+				<h:column>
+					<h:commandLink value="Usun" action="#{mangaBean.deleteManga(item)}"/>
+				</h:column>
+				<h:column>
+					<h:commandLink value="Edytuj" action="#{mangaBean.doEdycji(item)}"/>
+				</h:column>
+				
+				<!-- 
+				<h:column>
+					<f:facet name="header">#{msg.action}</f:facet>
+					<h:commandLink value="#{msg.actionDelete}"
+						action="#{personBean.deletePerson}" />
+					<h:commandLink value=" Details " action="#{personBean.showDetails}"/>
+				</h:column>
+				-->
+
+			</h:dataTable>
+		</h:form>
+	<p:imageCompare leftImage="./resources/images/tat1.png" rightImage="./resources/images/tat2.png"
+		width="231" height="500"/>
+	</ui:define>
+
+</ui:composition>

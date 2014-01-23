@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+	<br />
+	<br />
+	<p:idleMonitor timeout="10000" onidle="PF('idleDialog').show()" onactive="PF('idleDialog').hide()"/>
+	<p:dialog header="Jestes nieaktywny od 10 sekund" resizable="false" widgetVar="idleDialog" modal="true" width="400">
+	<h:outputText value="Hej, czy wszystko ok?" />
+	</p:dialog>
+		<h:form id="autorForm">
+		<p:panel id="panel" header="Nowy Autor" style="margin-bottom:5px;">
+			<h:panelGrid columns="2">
+
+				<h:outputText value="Nazwisko" />
+				<h:inputText id="nazwisko" value="#{autorBean.autor.nazwisko}"
+					required="#{true}" />
+
+			</h:panelGrid>
+			</p:panel>
+			<h:commandButton value="OK"
+				action="#{autorBean.addAutor}" />
+
+			<h:panelGrid>
+				<h:messages for="" />
+				<h:messages id="messages" showDetail="#{true}"
+					showSummary="#{false}" />
+			</h:panelGrid>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

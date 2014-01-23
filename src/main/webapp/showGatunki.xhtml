@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml">
+
+	<ui:define name="content">
+		<h:form>
+			<h:dataTable value="#{gatunekBean.allGatunki}" var="item">
+			
+				<f:facet name="header">Lista gatunkow</f:facet>
+				
+				<h:column>
+					<f:facet name="header">Tytul</f:facet>
+					<h:outputText value="#{item.nazwa}" />
+				</h:column>
+				
+				<h:column>
+					<h:commandLink value="Usun" action="#{gatunekBean.deleteGatunek(item)}"/>
+				</h:column>
+				<h:column>
+					<h:commandLink value="Edytuj" action="#{gatunekBean.doEdycji(item)}"/>
+				</h:column>
+				
+				
+				<!-- 
+				<h:column>
+					<f:facet name="header">#{msg.action}</f:facet>
+					<h:commandLink value="#{msg.actionDelete}"
+						action="#{personBean.deletePerson}" />
+					<h:commandLink value=" Details " action="#{personBean.showDetails}"/>
+				</h:column>
+				-->
+
+			</h:dataTable>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
