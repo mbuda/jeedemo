@@ -3,37 +3,31 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	template="/templates/default.xhtml">
+	template="/templates/default.xhtml"
+xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="content">
 		<h:form>
-			<h:dataTable value="#{gatunekBean.allGatunki}" var="item">
-			
-				<f:facet name="header">Lista gatunkow</f:facet>
-				
-				<h:column>
-					<f:facet name="header">Tytul</f:facet>
-					<h:outputText value="#{item.nazwa}" />
-				</h:column>
-				
-				<h:column>
-					<h:commandLink value="Usun" action="#{gatunekBean.deleteGatunek(item)}"/>
-				</h:column>
-				<h:column>
-					<h:commandLink value="Edytuj" action="#{gatunekBean.doEdycji(item)}"/>
-				</h:column>
-				
-				
-				<!-- 
-				<h:column>
-					<f:facet name="header">#{msg.action}</f:facet>
-					<h:commandLink value="#{msg.actionDelete}"
-						action="#{personBean.deletePerson}" />
-					<h:commandLink value=" Details " action="#{personBean.showDetails}"/>
-				</h:column>
-				-->
 
-			</h:dataTable>
+				
+				<p:scrollPanel style="width:250px;height:200px">
+    <p:dataGrid var="gatunek" value="#{gatunekBean.allGatunki}" columns="1">
+        <p:panel header="#{gatunek.nazwa}" style="text-align:center">
+            <h:panelGrid columns="1" style="width:100%">
+                <h:outputText value="#{gatunek.nazwa}" />
+	<h:column>
+					<h:commandLink value="Usun" action="#{gatunekBean.deleteGatunek(gatunek)}"/>
+				</h:column>
+				<h:column>
+					<h:commandLink value="Edytuj" action="#{gatunekBean.doEdycji(gatunek)}"/>
+				</h:column>
+            </h:panelGrid>
+        </p:panel>
+    </p:dataGrid>
+</p:scrollPanel>
+				
+				
+
 		</h:form>
 
 	</ui:define>

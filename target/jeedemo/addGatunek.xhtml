@@ -25,8 +25,8 @@
 			<h:panelGrid columns="2">
 
 				<h:outputText value="Nazwa" />
-				<h:inputText id="nazwa" value="#{gatunekBean.gatunek.nazwa}" validator="#{gatunekBean.uniqueNazwa}"
-					required="#{true}" />
+				<p:keyboard value="#{gatunekBean.gatunek.nazwa}" validator="#{gatunekBean.uniqueNazwa}" required="true"
+                    layout="alphabetic"/>
 
 			</h:panelGrid>
 			</p:panel>

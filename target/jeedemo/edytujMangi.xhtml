@@ -34,13 +34,9 @@
 					<f:selectItems  value="#{mangaBean.allGatunki}" var="c" itemValue="#{c}" itemLabel="#{c.nazwa}"/>
 				</h:selectManyListbox>
 				
-				<!-- 
-				<p:pickList value="#{mangaBean.tempList}" var="entity" itemValue="#{entity}" itemLabel="#{entity.nazwa}">
-            		<o:converter converterId="omnifaces.ListConverter" list="#{mangaBean.allGatunki}" />
-        		</p:pickList>
-				-->
+	</h:panelGrid>
 			</p:panel>
-			</h:panelGrid>
+			
 			<h:commandButton value="OK" action="#{mangaBean.edytujManga()}"/>
 
 			<h:panelGrid>

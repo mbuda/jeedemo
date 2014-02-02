@@ -11,7 +11,7 @@
 	<ui:define name="content">
 	<br />
 	<br />
-	<p:idleMonitor timeout="10000" onidle="PF('idleDialog').show()" onactive="PF('idleDialog').hide()"/>
+	<p:idleMonitor timeout="10000" onidle="idleDialog.show()" onactive="PF('idleDialog').hide()"/>
 	<p:dialog header="Jestes nieaktywny od 10 sekund" resizable="false" widgetVar="idleDialog" modal="true" width="400">
 	<h:outputText value="Hej, czy wszystko ok?" />
 	</p:dialog>
